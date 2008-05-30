@@ -77,10 +77,8 @@ public class DiskTable extends JTable {
 	 */
 	public void showDetail(){
 		
-			//JOptionPane.showMessageDialog(this, "Show Detail");
-		
 		DiskInfoDialog dlg = new DiskInfoDialog(frame,"DiskInfo",true);
-		dlg.setPreferredSize(new Dimension(800,600));
+		//dlg.setPreferredSize(new Dimension(800,600));
 		dlg.pack();
 		dlg.setVisible(true);
 	}

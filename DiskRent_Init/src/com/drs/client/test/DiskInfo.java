@@ -6,7 +6,7 @@ import java.util.*;
 public class DiskInfo {
 	
 	private String id;
-	private String desc;
+	private String name;
 	
 	/**
 	 * Disk Type. π‚≈Ã¿‡–Õ (VCD, DVD) 
@@ -37,12 +37,14 @@ public class DiskInfo {
 	
 	
 	/**
-	 * actors.
+	 * actors of this movie.
 	 */
 	private Set<String> actors;
 	
 	/**
 	 * Disk Content Description
+	 * 
+	 * 
 	 */
 	private String contentDesc;
 	
@@ -55,7 +57,7 @@ public class DiskInfo {
 	
 	public DiskInfo(String id, String desc){
 		this.id = id;
-		this.desc = desc;
+		this.name = desc;
 	}
 	
 	public String getId(){
@@ -63,8 +65,8 @@ public class DiskInfo {
 	}
 		
 	
-	public String getDesc(){
-		return desc;
+	public String getName(){
+		return name;
 	}
 	
 	/**
@@ -83,6 +85,5 @@ public class DiskInfo {
 		//TODO: needs to add logic to decide the mask.
 		return new Mask []{Mask.SHOW_DETAIL, Mask.RENT};
 	}
-	
-	
+		
 }

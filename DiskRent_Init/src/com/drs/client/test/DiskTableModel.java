@@ -66,7 +66,7 @@ public class DiskTableModel extends AbstractTableModel {
 		case 1:
 			return di.getId();
 		case 2:
-			return di.getDesc();
+			return di.getName();
 		default:
 			return "Undefined";
 				

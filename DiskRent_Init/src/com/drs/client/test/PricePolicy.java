@@ -12,6 +12,11 @@ package com.drs.client.test;
  */
 public interface PricePolicy {
 
+	/**
+	 *  adjust price according to DiskTag.
+	 */
 	public double adjust(double org, DiskTag tag);
+	
+	
 	
 }
