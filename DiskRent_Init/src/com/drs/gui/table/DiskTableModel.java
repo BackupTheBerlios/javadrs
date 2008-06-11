@@ -1,6 +1,8 @@
-package com.drs.client.test;
+package com.drs.gui.table;
 
 import javax.swing.table.AbstractTableModel;
+
+import com.drs.model.DiskInfo;
 
 import java.util.*;
 

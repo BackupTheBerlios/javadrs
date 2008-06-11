@@ -1,5 +1,7 @@
 package com.drs.client.test;
 
+import com.drs.model.DiskTag;
+
 /**
  * PricePolicy defines the policy of pricing.
  * 

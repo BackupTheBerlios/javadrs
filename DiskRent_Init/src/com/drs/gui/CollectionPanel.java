@@ -1,9 +1,10 @@
-package com.drs.client.test;
+package com.drs.gui;
 
 import javax.swing.*;
 
 import java.awt.Component;
-
+import java.awt.GridLayout;
+import java.awt.Color;
 import java.util.*;
 
 import static com.drs.client.util.ScreenUtil.*;
@@ -27,22 +28,24 @@ public class CollectionPanel extends JPanel {
 
 	private Style style = Style.HORIZONTAL_LIST;
 
-	private List data;
+	private Object [] data;
 
 	//private Class<? extends Component> elementComponentClass;
 
 	public CollectionPanel() {
-		data = new ArrayList();
-		initPanel();
-
+		
+		
 	}
 	
 	public void setTitle(String title){
 		this.setBorder(BorderFactory.createTitledBorder(title));
 	}
 
-	public CollectionPanel(Object... objects) {
-		data = Arrays.asList(objects);
+	
+	
+	public void setCollection(Object[] objects ){
+		data = objects;
+		
 		initPanel();
 	}
 
@@ -55,11 +58,15 @@ public class CollectionPanel extends JPanel {
 	 */
 	private void initPanel() {
 
+		// clear existing sub controls.
+		this.removeAll();
+		this.setLayout(new GridLayout(0,2,2,2));
 		try {
 			for (Object obj : data) {
 
 				//Component p = elementComponentClass.newInstance();
 				JLabel txt = new JLabel(obj.toString());
+				txt.setBorder(BorderFactory.createLineBorder(Color.blue));
 				add(txt);
 			}
 			

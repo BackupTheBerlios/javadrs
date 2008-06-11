@@ -1,6 +1,7 @@
-package com.drs.client.test;
+package com.drs.model;
 
 import java.util.*;
+
 
 
 public class DiskInfo {
@@ -84,6 +85,62 @@ public class DiskInfo {
 		
 		//TODO: needs to add logic to decide the mask.
 		return new Mask []{Mask.SHOW_DETAIL, Mask.RENT};
+	}
+
+	public Set<String> getActors() {
+		return actors;
+	}
+
+	public void setActors(Set<String> actors) {
+		this.actors = actors;
+	}
+
+	public String getContentDesc() {
+		return contentDesc;
+	}
+
+	public void setContentDesc(String contentDesc) {
+		this.contentDesc = contentDesc;
+	}
+
+	public Set<DiskTag> getDiskTagSet() {
+		return diskTagSet;
+	}
+
+	public void setDiskTagSet(Set<DiskTag> diskTagSet) {
+		this.diskTagSet = diskTagSet;
+	}
+
+	public DiskType getDiskType() {
+		return diskType;
+	}
+
+	public void setDiskType(DiskType diskType) {
+		this.diskType = diskType;
+	}
+
+	public Date getInStockDate() {
+		return inStockDate;
+	}
+
+	public void setInStockDate(Date inStockDate) {
+		this.inStockDate = inStockDate;
+	}
+
+	public Date getIssueDate() {
+		return issueDate;
+	}
+
+	public void setIssueDate(Date issueDate) {
+		this.issueDate = issueDate;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 		
 }

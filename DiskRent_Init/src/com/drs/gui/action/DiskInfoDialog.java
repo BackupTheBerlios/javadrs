@@ -1,11 +1,18 @@
-package com.drs.client.test;
+package com.drs.gui.action;
 
-import javax.swing.*;
-import java.awt.*;
+import static com.drs.client.util.ScreenUtil.addToContainer;
+import static com.drs.client.util.ScreenUtil.setSimpleSizes;
 
+import java.awt.BorderLayout;
+import java.awt.Frame;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import static com.drs.client.util.ScreenUtil.*;
-
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 
 
 /**
@@ -17,7 +24,7 @@ import static com.drs.client.util.ScreenUtil.*;
  * @author James Wang
  *
  */
-public class DiskInfoDialog extends JDialog{
+public class DiskInfoDialog extends AbstractDRSDialog{
 
 	/**
 	 * 
@@ -25,14 +32,10 @@ public class DiskInfoDialog extends JDialog{
 	private static final long serialVersionUID = 1L;
 	private JTabbedPane jTabbedPane;
 	
-	private DiskInfo data;
 	
-	
-	public DiskInfoDialog(Frame frame, String title, boolean modal){
-		super(frame, title, modal);
-		initDiskInfoDialog();
+	public DiskInfoDialog(Frame frame, String title){
+		super(frame, title);
 	}
-	
 	
 	private final String TAB_GENERAL="general";
 	private final String TAB_RENT="rent";
@@ -46,7 +49,7 @@ public class DiskInfoDialog extends JDialog{
 	 * Init this dialog with DiskInfo.
 	 *
 	 */
-	private void initDiskInfoDialog(){
+	protected void drsInitDialog(){
 		
 		
 		initTabbedPane();
@@ -61,8 +64,13 @@ public class DiskInfoDialog extends JDialog{
 		cmdPanel.setLayout(new BorderLayout());
 		
 		closeButton = new JButton("Close");
+		closeButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				dispose();
+			}
+		});
 		cmdPanel.add(closeButton, BorderLayout.EAST);
-		
+
 		getContentPane().add(cmdPanel, BorderLayout.SOUTH);	
 		
 	}
@@ -71,19 +79,16 @@ public class DiskInfoDialog extends JDialog{
 		jTabbedPane = new JTabbedPane(JTabbedPane.TOP,JTabbedPane.SCROLL_TAB_LAYOUT);
 		
 		generalPanel = createGeneralPanel();
-		rentPanel    = createRentPanel();
-		morePanel    = createMorePanel();
-		
+//		rentPanel    = createRentPanel();
+//		morePanel    = createMorePanel();
+//		
 		jTabbedPane.addTab(TAB_GENERAL, generalPanel);
-		jTabbedPane.addTab(TAB_RENT, rentPanel);
-		jTabbedPane.addTab(TAB_MORE, morePanel);
+//		jTabbedPane.addTab(TAB_RENT, rentPanel);
+//		jTabbedPane.addTab(TAB_MORE, morePanel);
 			
 	}
 	
 	
-	private JTextField idField, nameField;
-	private JComboBox diskTypeComboBox;
-	private CollectionPanel actors, tags;
 	
 	
 	private JPanel createGeneralPanel(){
@@ -101,18 +106,6 @@ public class DiskInfoDialog extends JDialog{
 		
 		basicInfo.setBorder(BorderFactory.createTitledBorder("Basic Info")); //TODO: i18n.
 		
-		JLabel idLabel = new JLabel("ID:");
-		JLabel nameLabel = new JLabel("name:");
-		JLabel diskTypeLabel = new JLabel("Disk Type:");
-		
-		idField 		= new JTextField();
-		nameField 		= new JTextField();
-		diskTypeComboBox 	= createComboBox("VCD","DVD");
-		actors              = new CollectionPanel();
-		tags                = new CollectionPanel();
-		
-		actors.setTitle("Actors");
-		tags.setTitle("Tags");
 		
 		
 		
@@ -120,25 +113,18 @@ public class DiskInfoDialog extends JDialog{
 		
 		// Set a preferred size of the fields.
 		setSimpleSizes(200, 25, 
-				idLabel, idField, 
-				nameLabel,nameField, 
+				idLabel, diskIdField, 
+				nameLabel,diskName, 
 				diskTypeLabel,diskTypeComboBox
 				
 		);
 		
 		// add to the panel.
-		addToContainer(basicInfo,idLabel, idField, 
-				nameLabel,nameField, 
+		addToContainer(basicInfo,idLabel, diskIdField, 
+				nameLabel,diskName, 
 				diskTypeLabel,diskTypeComboBox
 				);
-		
-		
-		/**
-		 * 
-		 * 
-		 */
-		
-		
+	
 		// add to the general panel.
 		addToContainer(panel, basicInfo, actors, tags);
 	
@@ -161,32 +147,5 @@ public class DiskInfoDialog extends JDialog{
 		
 		return panel;
 	}
-	
-	/**
-	 * Pass in the DiskInfo to this Dialog for display.
-	 * 
-	 * @param di
-	 */
-	public void setData(DiskInfo di){
-		this.data = di;
-		this.fireDiskInfoUpdated();
-	}
-	
-	
-	
-	
-	/**
-	 * Display the updated DiskInfo on the component (dialog). 
-	 *
-	 */
-	private void fireDiskInfoUpdated(){
 		
-		this.idField.setText(data.getId());
-		this.nameField.setText(data.getName());
-		//TODO: not finished.
-		
-	}
-	
-	
-	
 }

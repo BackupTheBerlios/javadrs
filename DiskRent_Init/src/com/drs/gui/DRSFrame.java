@@ -1,13 +1,30 @@
-package com.drs.client.test;
+package com.drs.gui;
 
-import java.util.*;
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Rectangle;
+import java.awt.Toolkit;
 
-import java.awt.event.*;
-import javax.swing.event.*;
+import javax.swing.Action;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.JToolBar;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
-import javax.swing.table.*;
+import com.drs.client.test.DiskInfoTest;
+import com.drs.gui.action.RegDiskAction;
+import com.drs.gui.action.RentDiskAction;
+import com.drs.gui.action.ShowDetailAction;
+import com.drs.gui.table.DiskTableModel;
+import com.drs.model.DiskInfo;
 /**
  * There is another option: run the app as a plugin of eclipse or netbeans.
  * 
@@ -26,17 +43,15 @@ public class DRSFrame extends JFrame {
 	private DiskTable table;
 	private DiskTableModel dtm;
 	
+	private JButton regDiskButton, showDiskInfoButton, rentDiskButton, returnDiskButton;
+	
 	public DRSFrame()
 	{
 		setupFrame();
 		setJMenuBar(setupMenu());
 		
-		/**
-		 * Add a Toolbar.
-		 * 
-		 */
 		
-		this.add(setupToolBar(),BorderLayout.NORTH);
+		
 				
 		/**
 		 * Add Content Panel. 
@@ -55,12 +70,15 @@ public class DRSFrame extends JFrame {
 		table = new DiskTable(this,dtm);
 		
 	
+
+		getContentPane().add(setupToolBar(),BorderLayout.NORTH);
 		
-//		getContentPane().add(controlPanel, BorderLayout.NORTH);				
 		getContentPane().add(initContentPanel(), BorderLayout.CENTER);
 		
 		
 		setupQueryAction();
+		
+		
 		
 		
 		pack();		
@@ -215,15 +233,22 @@ public class DRSFrame extends JFrame {
 		qt = new JTextField();
 		qt.setPreferredSize(new Dimension(80,20));
 		qt.setMaximumSize(new Dimension(200,25));
-		JButton b1 = new JButton("Register New Disk");
-		JButton b2 = new JButton("Collect Old Disks");
+		
+		Action regDiskAction = new RegDiskAction();
+		Action rentDiskAction = new RentDiskAction(table);
+		Action showDetailAction = new ShowDetailAction(table);
+		regDiskButton = new JButton(regDiskAction);
+		rentDiskButton = new JButton(rentDiskAction);
+		showDiskInfoButton = new JButton(showDetailAction);
 		
 		bar.addSeparator(new Dimension(5,20));
 		bar.add(qt);
 		bar.addSeparator(new Dimension(5,20));
-		bar.add(b1);
+		bar.add(regDiskButton);
 		bar.addSeparator(new Dimension(5,20));
-		bar.add(b2);
+		bar.add(rentDiskButton);
+		bar.addSeparator(new Dimension(5,20));
+		bar.add(showDiskInfoButton);
 		
 		return bar;
 		
