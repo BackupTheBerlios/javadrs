@@ -8,6 +8,8 @@ import static com.drs.model.RentInfo.fieldDescs;
 
 import java.awt.Component;
 import java.awt.Frame;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,6 +24,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import com.drs.biz.DepositService;
+import com.drs.client.util.ScreenUtil;
 import com.drs.gui.DiskTable;
 import com.drs.model.DiskInfo;
 import com.drs.model.RentInfo;
@@ -160,12 +163,39 @@ class RentDiskDialog extends AbstractDRSDialog {
 	 */
 	private void initRelatedDiskInfo() {
 
-		GridLayout grid = new GridLayout(0, 2, 2, 2);
+		GridBagLayout grid = new GridBagLayout();
 		relatedDiskInfoPanel.setLayout(grid);
 
-		addToContainer(relatedDiskInfoPanel, this.idLabel, this.diskIdField,
-				this.diskTypeLabel, this.diskTypeComboBox, this.nameLabel,
-				this.diskName, new JLabel("Disk Tags:"), this.tags);
+		ScreenUtil.setSimpleSizes(100,20, idLabel, nameLabel );
+		ScreenUtil.setSimpleSizes(200,20,  diskIdField,  diskName );
+		GridBagConstraints constraints = new GridBagConstraints();
+		
+		constraints.gridx = 1;
+		constraints.gridy = 1;
+		relatedDiskInfoPanel.add(idLabel, constraints);
+		
+		
+		constraints.gridx = 5;
+		constraints.gridy = 1;
+		
+		relatedDiskInfoPanel.add(this.diskIdField, constraints);
+		
+		
+		
+		constraints.gridx = 1;
+		constraints.gridy = 3;
+		relatedDiskInfoPanel.add(this.nameLabel, constraints);
+		
+		constraints.gridx = 5;
+		constraints.gridy = 3;
+		relatedDiskInfoPanel.add(this.diskName, constraints);
+		
+		
+//		constraints.gridx = 1;
+//		constraints.gridy = 5;
+//		relatedDiskInfoPanel.add(this.tags, constraints);
+//		
+		
 
 	}
 

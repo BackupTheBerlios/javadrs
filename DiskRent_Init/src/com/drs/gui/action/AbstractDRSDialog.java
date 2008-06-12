@@ -7,6 +7,7 @@ import java.awt.Frame;
 
 import javax.swing.*;
 
+import com.drs.client.util.ScreenUtil;
 import com.drs.gui.CollectionPanel;
 import com.drs.model.DiskInfo;
 import com.drs.model.DiskTag;
@@ -20,9 +21,11 @@ public abstract class AbstractDRSDialog extends JDialog{
 	protected JComboBox diskTypeComboBox;
 	protected CollectionPanel actors, tags;
 	
-	protected JLabel idLabel = new JLabel("ID:");
-	protected JLabel nameLabel = new JLabel("name:");
-	protected JLabel diskTypeLabel = new JLabel("Disk Type:");
+	protected JLabel idLabel = new JLabel("编号:");
+	protected JLabel nameLabel = new JLabel("影碟名称:");
+	protected JLabel diskTypeLabel = new JLabel("碟片类型:");
+	
+	
 	
 	
 	
@@ -63,7 +66,8 @@ public abstract class AbstractDRSDialog extends JDialog{
 		actors.setTitle("Actors");
 		tags.setTitle("Tags");
 		
-		
+		ScreenUtil.setSimpleSizes(100,20, idLabel, nameLabel );
+		ScreenUtil.setSimpleSizes(200,20,  diskIdField,  diskName );
 		
 		drsInitDialog();
 	}

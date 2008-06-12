@@ -20,7 +20,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import com.drs.client.test.DiskInfoTest;
-import com.drs.gui.action.RegDiskAction;
+import com.drs.gui.action.RegNewDiskAction;
 import com.drs.gui.action.RentDiskAction;
 import com.drs.gui.action.ShowDetailAction;
 import com.drs.gui.table.DiskTableModel;
@@ -234,7 +234,7 @@ public class DRSFrame extends JFrame {
 		qt.setPreferredSize(new Dimension(80,20));
 		qt.setMaximumSize(new Dimension(200,25));
 		
-		Action regDiskAction = new RegDiskAction();
+		Action regDiskAction = new RegNewDiskAction(this);
 		Action rentDiskAction = new RentDiskAction(table);
 		Action showDetailAction = new ShowDetailAction(table);
 		regDiskButton = new JButton(regDiskAction);
